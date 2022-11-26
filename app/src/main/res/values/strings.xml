@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MedRem</string>
+    <string name="today">Today</string>
+    <string name="progress">Progress</string>
+    <string name="therapy">Therapy</string>
+    <string name="TodayFragmentText">This is today fragment</string>
+    <string name="TherapyFragmentText">This is therapy fragment</string>
+    <string name="ProgressFragmentText">This is progress fragment</string>
 </resources>
