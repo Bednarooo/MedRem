@@ -2,6 +2,9 @@ package com.example.medrem;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,13 +14,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,14 +82,26 @@ public class TodayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        Button button = (Button) view.findViewById(R.id.addOneButton);
-
-        button.setOnClickListener(new View.OnClickListener()
+        TextView initialText = (TextView) view.findViewById(R.id.todayInitialText);
+        Button addOneButton = (Button) view.findViewById(R.id.addOneButton);
+        Button goBackButton = (Button) view.findViewById(R.id.goBackButton);
+        ListView listViewWithChoices = (ListView) view.findViewById(R.id.possibleChoices);
+        ArrayList<String> possibleChoicesArray = new ArrayList<>();
+        possibleChoicesArray.add("Lek");
+        possibleChoicesArray.add("Pomiar");
+        ArrayAdapter<String> possibleChoicesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, possibleChoicesArray);
+        listViewWithChoices.setAdapter(possibleChoicesAdapter);
+        addOneButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                addOneButton.setVisibility(View.GONE);
+                listViewWithChoices.setVisibility(View.VISIBLE);
+                goBackButton.setVisibility(View.VISIBLE);
+                initialText.setVisibility(View.GONE);
+
+                /*FirebaseFirestore db = FirebaseFirestore.getInstance();
                 Map<String, Object> user = new HashMap<>();
                 user.put("first", "Ada");
                 user.put("last", "Lovelace");
@@ -98,7 +119,32 @@ public class TodayFragment extends Fragment {
                             public void onFailure(@NonNull Exception e) {
                                 Log.w(TAG, "Error adding document", e);
                             }
-                        });
+                        });*/
+            }
+        });
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBackButton.setVisibility(View.GONE);
+                listViewWithChoices.setVisibility(View.GONE);
+                addOneButton.setVisibility(View.VISIBLE);
+                initialText.setVisibility(View.VISIBLE);
+            }
+        });
+
+        listViewWithChoices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (possibleChoicesArray.get(position)) {
+                    case "Pomiar":
+                        Intent switchActivitiesIntent = new Intent(getActivity(), AddingMeasurement.class);
+                        startActivity(switchActivitiesIntent);
+                        break;
+
+                    default:
+                        break;
+                }
             }
         });
 
