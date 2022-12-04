@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "925716126479",
+    "project_id": "grupa2mobi22-d27bd",
+    "storage_bucket": "grupa2mobi22-d27bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925716126479:android:552c9ce96181845fa9fc7a",
+        "android_client_info": {
+          "package_name": "com.example.medrem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925716126479-717rigu8ns8pvvg78e4s70jtlbfoe2r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medrem",
+            "certificate_hash": "ec1d557e5f59c13a1eee4d44b9ee56b8ce8be96a"
+          }
+        },
+        {
+          "client_id": "925716126479-cph7a6irs9d0eabd3e1ph2e4236vkqgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYzRjfJaSV4bhH7eIiPG3F0S6yvfwSGhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "925716126479-cph7a6irs9d0eabd3e1ph2e4236vkqgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
