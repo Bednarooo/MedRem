@@ -20,12 +20,12 @@
         <item>Wybierz Rodzaj Dawkowania</item>
         <item>Gramy</item>
         <item>Czopki</item>
-        <item>Kapsułki</item>
+        <item>Kapsulki</item>
         <item>Krople</item>
         <item>Plastry</item>
         <item>Saszetki</item>
         <item>Mililitry</item>
-        <item>Łyżeczki</item>
+        <item>Łyzeczki</item>
     </string-array>
     <string-array name="typ_przypomnienia">
         <item>Wybierz Typ</item>

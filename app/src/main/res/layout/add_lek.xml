@@ -45,7 +45,7 @@
 
 
     <EditText
-        android:id="@+id/TextDawka"
+        android:id="@+id/textDawka"
         android:layout_width="339dp"
         android:layout_height="60dp"
         android:hint="@string/dawka"
