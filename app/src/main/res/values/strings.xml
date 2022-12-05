@@ -8,7 +8,25 @@
     <string name="ProgressFragmentInitialText">Kiedy potwierdzisz pierwsze przypomnienia, znajdziesz tutaj wszystkie swoje wcześniejsze wpisy</string>
     <string name="dodaj_jednorazowy_wpis">Dodaj jednorazowy wpis</string>
     <string name="dodaj_przypomnienie">DODAJ PRZYPOMNIENIE</string>
+    <string name="wybierz_typ">Typ przypomnienia</string>
+    <string name="wybierz_typ_dawki">Typ dawki</string>
+    <string name="dodaj_przypomnienie_title">Dodaj Przypomnienie</string>
+    <string name="nazwa_leku">Nazwa leku</string>
+    <string name="ustaw">Ustaw</string>
+    <string name="anuluj">Anuluj</string>
+    <string name="dawka">Dawka</string>
+    <string-array name="typ_dawki">
+        <item>Gramy</item>
+        <item>Czopki</item>
+        <item>Kapsułki</item>
+        <item>Krople</item>
+        <item>Plastry</item>
+        <item>Saszetki</item>
+        <item>Mililitry</item>
+        <item>Łyżeczka</item>
+    </string-array>
     <string-array name="typ_przypomnienia">
+        <item>Wybierz Typ</item>
         <item>Lek</item>
         <item>Badanie</item>
         <item>Objawy</item>
