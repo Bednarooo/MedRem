@@ -8,4 +8,9 @@
     <string name="ProgressFragmentInitialText">Kiedy potwierdzisz pierwsze przypomnienia, znajdziesz tutaj wszystkie swoje wcześniejsze wpisy</string>
     <string name="dodaj_jednorazowy_wpis">Dodaj jednorazowy wpis</string>
     <string name="dodaj_przypomnienie">DODAJ PRZYPOMNIENIE</string>
+    <string-array name="typ_przypomnienia">
+        <item>Lek</item>
+        <item>Badanie</item>
+        <item>Objawy</item>
+    </string-array>
 </resources>
