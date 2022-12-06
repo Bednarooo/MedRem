@@ -7,24 +7,6 @@
     tools:context=".AddingMeasurement">
 
     <TextView
-        android:id="@+id/dateTextView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/godzina"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTime"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTime" />
-
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dataText"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextDate" />
-
-    <TextView
         android:id="@+id/valueTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,21 +25,6 @@
         app:layout_constraintTop_toTopOf="@+id/editTextMeasurementName" />
 
     <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/dataText"
-        android:labelFor="@id/dateTextView"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextValue" />
-
-    <EditText
         android:id="@+id/editTextValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,7 +38,8 @@
         android:textAlignment="center"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMeasurementName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextMeasurementName"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <EditText
         android:id="@+id/editTextMeasurementName"
@@ -87,20 +55,21 @@
         android:textAlignment="center"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
-    <EditText
-        android:id="@+id/editTextTime"
+    <Button
+        android:id="@+id/saveMeasurementButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/godzina"
-        android:inputType="time"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        android:textColorHint="#757575"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="438dp"
+        android:text="@string/zapisz"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextValue" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
