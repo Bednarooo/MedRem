@@ -45,40 +45,35 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String[] reminderTypes = getResources().getStringArray(R.array.typ_przypomnienia);
-        if (parent.getAdapter().getItem(0) == reminderTypes[0]) {
-            int index = parent.getSelectedItemPosition();
-            Intent intent;
-            if (index == 2) {
-                intent = new Intent(this, AddBadanieActivity.class);
-                startActivity(intent);
-            } else if (index == 3) {
-                intent = new Intent(this, AddObjawyActivity.class);
-                startActivity(intent);
-            }
-        } else {
-            int index = parent.getSelectedItemPosition();
-            if (index == 0) {
-                index = 1;
-            }
-            if (index == 1)
-                lek.setTypDawkowania(TypDawkowania.Gramy);
-            else if (index == 2)
-                lek.setTypDawkowania(TypDawkowania.Czopki);
-            else if (index == 3)
-                lek.setTypDawkowania(TypDawkowania.Kapsulki);
-            else if (index == 4)
-                lek.setTypDawkowania(TypDawkowania.Krople);
-            else if (index == 5)
-                lek.setTypDawkowania(TypDawkowania.Plastry);
-            else if (index == 6)
-                lek.setTypDawkowania(TypDawkowania.Saszetki);
-            else if (index == 7)
-                lek.setTypDawkowania(TypDawkowania.Mililitry);
-            else if (index == 8)
-                lek.setTypDawkowania(TypDawkowania.Łyzeczki);
-            String text = lek.getTypDawkowania().toString();
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        int index = parent.getSelectedItemPosition();
+        switch (parent.getId()) {
+            case R.id.spinnerLek:
+                Intent intent;
+                if (index == 2) {
+                    intent = new Intent(this, AddBadanieActivity.class);
+                    startActivity(intent);
+                } else if (index == 3) {
+                    intent = new Intent(this, AddObjawyActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.spinnerLekDawka:
+                if (index == 1)
+                    lek.setTypDawkowania(TypDawkowania.Gramy);
+                else if (index == 2)
+                    lek.setTypDawkowania(TypDawkowania.Czopki);
+                else if (index == 3)
+                    lek.setTypDawkowania(TypDawkowania.Kapsulki);
+                else if (index == 4)
+                    lek.setTypDawkowania(TypDawkowania.Krople);
+                else if (index == 5)
+                    lek.setTypDawkowania(TypDawkowania.Plastry);
+                else if (index == 6)
+                    lek.setTypDawkowania(TypDawkowania.Saszetki);
+                else if (index == 7)
+                    lek.setTypDawkowania(TypDawkowania.Mililitry);
+                else if (index == 8)
+                    lek.setTypDawkowania(TypDawkowania.Łyzeczki);
         }
     }
 
