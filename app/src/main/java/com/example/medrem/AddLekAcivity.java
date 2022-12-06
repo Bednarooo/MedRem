@@ -11,6 +11,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -38,11 +39,14 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
 
         findViewById(R.id.ustawLekButton).setOnClickListener(this);
         findViewById(R.id.anulujLekButton).setOnClickListener(this);
+
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getAdapter().getItem(0) == "Wybierz Typ") {
+        String[] reminderTypes = getResources().getStringArray(R.array.typ_przypomnienia);
+        if (parent.getAdapter().getItem(0) == reminderTypes[0]) {
             int index = parent.getSelectedItemPosition();
             Intent intent;
             if (index == 2) {
@@ -54,7 +58,9 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
             }
         } else {
             int index = parent.getSelectedItemPosition();
-
+            if (index == 0) {
+                index = 1;
+            }
             if (index == 1)
                 lek.setTypDawkowania(TypDawkowania.Gramy);
             else if (index == 2)
@@ -71,6 +77,8 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
                 lek.setTypDawkowania(TypDawkowania.Mililitry);
             else if (index == 8)
                 lek.setTypDawkowania(TypDawkowania.Łyzeczki);
+            String text = lek.getTypDawkowania().toString();
+            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         }
     }
 
