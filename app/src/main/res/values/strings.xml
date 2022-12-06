@@ -14,4 +14,29 @@
     <string name="dataText">Data</string>
     <string name="godzina">Godzina</string>
     <string name="zapisz">Zapisz</string>
+    <string name="wybierz_typ">Typ przypomnienia</string>
+    <string name="wybierz_typ_dawki">Typ dawki</string>
+    <string name="dodaj_przypomnienie_title">Dodaj Przypomnienie</string>
+    <string name="nazwa_leku">Nazwa leku</string>
+    <string name="ustaw">Ustaw</string>
+    <string name="anuluj">Anuluj</string>
+    <string name="dawka">Dawka</string>
+    <string name="rodzaj_badania">Podaj Rodzaj Badania</string>
+    <string-array name="typ_dawki">
+        <item>Wybierz Rodzaj Dawkowania</item>
+        <item>Gramy</item>
+        <item>Czopki</item>
+        <item>Kapsulki</item>
+        <item>Krople</item>
+        <item>Plastry</item>
+        <item>Saszetki</item>
+        <item>Mililitry</item>
+        <item>Łyzeczki</item>
+    </string-array>
+    <string-array name="typ_przypomnienia">
+        <item>Wybierz Typ</item>
+        <item>Zarzycie Lekarstwa</item>
+        <item>Przeprowadzenie Badania</item>
+        <item>Kontrola Objawów</item>
+    </string-array>
 </resources>
