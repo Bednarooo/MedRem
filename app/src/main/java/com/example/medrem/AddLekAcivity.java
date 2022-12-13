@@ -11,19 +11,18 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 
 public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-    private Lek lek;
+    private Medicine medicine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_lek);
 
-        lek = new Lek();
+        medicine = new Medicine();
 
         Spinner spinner = findViewById(R.id.spinnerLek);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typ_przypomnienia, android.R.layout.simple_spinner_item);
@@ -59,21 +58,21 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
                 break;
             case R.id.spinnerLekDawka:
                 if (index == 1)
-                    lek.setTypDawkowania(TypDawkowania.Gramy);
+                    medicine.setDoseType(DoseType.Gramy);
                 else if (index == 2)
-                    lek.setTypDawkowania(TypDawkowania.Czopki);
+                    medicine.setDoseType(DoseType.Czopki);
                 else if (index == 3)
-                    lek.setTypDawkowania(TypDawkowania.Kapsulki);
+                    medicine.setDoseType(DoseType.Kapsulki);
                 else if (index == 4)
-                    lek.setTypDawkowania(TypDawkowania.Krople);
+                    medicine.setDoseType(DoseType.Krople);
                 else if (index == 5)
-                    lek.setTypDawkowania(TypDawkowania.Plastry);
+                    medicine.setDoseType(DoseType.Plastry);
                 else if (index == 6)
-                    lek.setTypDawkowania(TypDawkowania.Saszetki);
+                    medicine.setDoseType(DoseType.Saszetki);
                 else if (index == 7)
-                    lek.setTypDawkowania(TypDawkowania.Mililitry);
+                    medicine.setDoseType(DoseType.Mililitry);
                 else if (index == 8)
-                    lek.setTypDawkowania(TypDawkowania.Łyzeczki);
+                    medicine.setDoseType(DoseType.Łyzeczki);
         }
     }
 
