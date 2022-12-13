@@ -29,9 +29,11 @@ import java.util.List;
 
 
 public class ProgressFragment extends Fragment {
+    private SpeechService speechService;
 
     public ProgressFragment() {
         // Required empty public constructor
+        speechService = SpeechService.getInstance();
     }
 
     @Override
@@ -110,6 +112,8 @@ public class ProgressFragment extends Fragment {
                     progressMedicinesListView.setAdapter(medicinesAdapter);
 
                     progressMedicinesListView.setVisibility(View.VISIBLE);
+
+                    speechService.speak("You have " + medicinesStringArray.size() + " medicines in total");
                 }
                 Log.d(TAG, "number of medicines: " + medicinesFromDb.size());
             }
@@ -134,6 +138,8 @@ public class ProgressFragment extends Fragment {
                     }
                     ArrayAdapter<String> measurementsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, measurementsStringArray);
                     progressMedicinesListView.setAdapter(measurementsAdapter);
+
+                    speechService.speak("You have " + measurementsFromDb.size() + " ongoing measurements");
 
                     progressMedicinesListView.setVisibility(View.VISIBLE);
                 }

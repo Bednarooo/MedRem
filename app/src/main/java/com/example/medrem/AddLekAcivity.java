@@ -12,16 +12,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
+import java.text.SimpleDateFormat;
+
 
 public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
+    private SpeechService speechService;
     private Medicine medicine;
+
+    private CalendarView calendarViewLek;
+    private TimePicker timePickerLek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_lek);
 
+        speechService = SpeechService.getInstance();
         medicine = new Medicine();
 
         Spinner spinner = findViewById(R.id.spinnerLek);
@@ -38,8 +44,8 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
 
         findViewById(R.id.ustawLekButton).setOnClickListener(this);
         findViewById(R.id.anulujLekButton).setOnClickListener(this);
-
-
+        calendarViewLek = findViewById(R.id.calendarViewLek);
+        timePickerLek = findViewById(R.id.timePickerLek);
     }
 
     @Override
