@@ -1,20 +1,18 @@
 package com.example.medrem;
 
-public class Measurement {
+public class Medicine {
     private String name;
-    private String value;
+    private String dose;
+    private DoseType doseType;
     private String date;
     private String time;
 
-    public Measurement(String name, String value, String date, String time) {
+    public Medicine(String name, String dose, DoseType doseType, String date, String time) {
         this.name = name;
-        this.value = value;
+        this.dose = dose;
+        this.doseType = doseType;
         this.date = date;
         this.time = time;
-    }
-
-    public Measurement(){
-
     }
 
     public String getDate() {
@@ -33,6 +31,9 @@ public class Measurement {
         this.time = time;
     }
 
+    public Medicine() {
+    }
+
     public String getName() {
         return name;
     }
@@ -41,11 +42,19 @@ public class Measurement {
         this.name = name;
     }
 
-    public String getValue() {
-        return value;
+    public String getDose() {
+        return dose;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public DoseType getDoseType() {
+        return doseType;
+    }
+
+    public void setDoseType(DoseType doseType) {
+        this.doseType = doseType;
     }
 }

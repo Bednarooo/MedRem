@@ -29,14 +29,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddingMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private Lek medicine;
+    private Medicine medicine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_medicine);
 
-        medicine = new Lek();
+        medicine = new Medicine();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -76,31 +76,33 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
                 if (medicineNameEditText.getText().toString().equals("") || medicineDoseEditText.getText().toString().equals("") || medicineDoseTypeSpinner.getSelectedItemPosition() == 0) {
                     Toast.makeText(AddingMedicineActivity.this, "Należy podać nazwę leku, dawkę oraz typ dawkowania", Toast.LENGTH_LONG).show();
                 } else {
-                    medicine.setNazwa(medicineNameEditText.getText().toString());
-                    medicine.setDawka(medicineDoseEditText.getText().toString());
+                    medicine.setName(medicineNameEditText.getText().toString());
+                    medicine.setDose(medicineDoseEditText.getText().toString());
+                    medicine.setDate(sdf.format(medicineCalendarView.getDate()));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        medicine.setTime(medicineTimePicker.getHour() + ":" + medicineTimePicker.getMinute());
+                    } else {
+                        medicine.setTime(medicineTimePicker.getCurrentHour() + ":" + medicineTimePicker.getCurrentMinute());
+                    }
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     Map<String, Object> mapMedicine = new HashMap<>();
-                    mapMedicine.put("name", medicine.getNazwa());
-                    mapMedicine.put("dose", medicine.getDawka());
-                    mapMedicine.put("doseType", medicine.getTypDawkowania());
-                    mapMedicine.put("date", sdf.format(medicineCalendarView.getDate()));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        mapMedicine.put("time", medicineTimePicker.getHour() + ":" + medicineTimePicker.getMinute());
-                    } else {
-                        mapMedicine.put("time", medicineTimePicker.getCurrentHour() + ":" + medicineTimePicker.getCurrentMinute());
-                    }
+                    mapMedicine.put("name", medicine.getName());
+                    mapMedicine.put("dose", medicine.getDose());
+                    mapMedicine.put("doseType", medicine.getDoseType());
+                    mapMedicine.put("date", medicine.getDate());
+                    mapMedicine.put("time", medicine.getTime());
                     db.collection("medicines")
                             .add(mapMedicine)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(AddingMedicineActivity.this, "Pomyślnie dodano pomiar", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddingMedicineActivity.this, "Pomyślnie dodano lek", Toast.LENGTH_SHORT).show();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(AddingMedicineActivity.this, "Błąd podczas dodawania pomiaru", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddingMedicineActivity.this, "Błąd podczas dodawania leku", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
@@ -119,28 +121,28 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (parent.getSelectedItemPosition()) {
             case 1:
-                medicine.setTypDawkowania(TypDawkowania.Gramy);
+                medicine.setDoseType(DoseType.Gramy);
                 break;
             case 2:
-                medicine.setTypDawkowania(TypDawkowania.Czopki);
+                medicine.setDoseType(DoseType.Czopki);
                 break;
             case 3:
-                medicine.setTypDawkowania(TypDawkowania.Kapsulki);
+                medicine.setDoseType(DoseType.Kapsulki);
                 break;
             case 4:
-                medicine.setTypDawkowania(TypDawkowania.Krople);
+                medicine.setDoseType(DoseType.Krople);
                 break;
             case 5:
-                medicine.setTypDawkowania(TypDawkowania.Plastry);
+                medicine.setDoseType(DoseType.Plastry);
                 break;
             case 6:
-                medicine.setTypDawkowania(TypDawkowania.Saszetki);
+                medicine.setDoseType(DoseType.Saszetki);
                 break;
             case 7:
-                medicine.setTypDawkowania(TypDawkowania.Mililitry);
+                medicine.setDoseType(DoseType.Mililitry);
                 break;
             case 8:
-                medicine.setTypDawkowania(TypDawkowania.Łyzeczki);
+                medicine.setDoseType(DoseType.Łyzeczki);
                 break;
         }
     }

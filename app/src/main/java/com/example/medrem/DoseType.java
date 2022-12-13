@@ -1,6 +1,6 @@
 package com.example.medrem;
 
-public enum TypDawkowania {
+public enum DoseType {
         Gramy,
         Czopki,
         Kapsulki,
