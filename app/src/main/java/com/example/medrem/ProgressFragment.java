@@ -29,11 +29,9 @@ import java.util.List;
 
 
 public class ProgressFragment extends Fragment {
-    private SpeechService speechService;
 
     public ProgressFragment() {
         // Required empty public constructor
-        speechService = SpeechService.getInstance();
     }
 
     @Override
@@ -113,7 +111,6 @@ public class ProgressFragment extends Fragment {
 
                     progressMedicinesListView.setVisibility(View.VISIBLE);
 
-                    speechService.speak("You have " + medicinesStringArray.size() + " medicines in total");
                 }
                 Log.d(TAG, "number of medicines: " + medicinesFromDb.size());
             }
@@ -132,14 +129,11 @@ public class ProgressFragment extends Fragment {
                     ArrayList<String> measurementsStringArray = new ArrayList<>();
                     for (int i = 0; i < measurementsFromDb.size(); i++) {
                         measurementsStringArray.add("Nazwa pomiaru: " +measurementsFromDb.get(i).getName() + ", " +
-                                "Wartość: " + measurementsFromDb.get(i).getValue() + ", " +
                                 "Data: " + measurementsFromDb.get(i).getDate() + ", " +
                                 "Godzina: " + measurementsFromDb.get(i).getTime());
                     }
                     ArrayAdapter<String> measurementsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, measurementsStringArray);
                     progressMedicinesListView.setAdapter(measurementsAdapter);
-
-                    speechService.speak("You have " + measurementsFromDb.size() + " ongoing measurements");
 
                     progressMedicinesListView.setVisibility(View.VISIBLE);
                 }

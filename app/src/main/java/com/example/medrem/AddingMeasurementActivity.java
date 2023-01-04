@@ -1,22 +1,18 @@
 package com.example.medrem;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,7 +32,6 @@ public class AddingMeasurementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_adding_measurement);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         EditText measurementNameEditText = (EditText) findViewById(R.id.editTextMeasurementName);
-        EditText measurementValueEditText = (EditText) findViewById(R.id.editTextValue);
         TimePicker measurementTimePicker = (TimePicker) findViewById(R.id.timePickerMeasurement);
 
         CalendarView measurementCalendarView = (CalendarView) findViewById(R.id.calendarMeasurement);
@@ -63,20 +58,19 @@ public class AddingMeasurementActivity extends AppCompatActivity {
         saveMeasurementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (measurementNameEditText.getText().toString().equals("") || measurementValueEditText.getText().toString().equals("")) {
+                if (measurementNameEditText.getText().toString().equals("")) {
                     Toast.makeText(AddingMeasurementActivity.this, "Należy podać nazwę pomiaru oraz wartość", Toast.LENGTH_LONG).show();
                 } else {
                     Measurement measurement = null;
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        measurement = new Measurement(measurementNameEditText.getText().toString(), measurementValueEditText.getText().toString(), sdf.format(measurementCalendarView.getDate()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
+                        measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(measurementCalendarView.getDate()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
                     } else {
-                        measurement = new Measurement(measurementNameEditText.getText().toString(), measurementValueEditText.getText().toString(), sdf.format(measurementCalendarView.getDate()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
+                        measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(measurementCalendarView.getDate()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
 
                     }
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     Map<String, Object> mapMeasurement = new HashMap<>();
                     mapMeasurement.put("name", measurement.getName());
-                    mapMeasurement.put("value", measurement.getValue());
                     mapMeasurement.put("date", measurement.getDate());
                     mapMeasurement.put("time", measurement.getTime());
 
@@ -95,7 +89,6 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                                 }
                             });
                     measurementNameEditText.getText().clear();
-                    measurementValueEditText.getText().clear();
                 }
             }
         });

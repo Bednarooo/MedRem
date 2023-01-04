@@ -1,7 +1,5 @@
 package com.example.medrem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +10,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import java.text.SimpleDateFormat;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-    private SpeechService speechService;
     private Medicine medicine;
 
     private CalendarView calendarViewLek;
@@ -27,7 +24,6 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_lek);
 
-        speechService = SpeechService.getInstance();
         medicine = new Medicine();
 
         Spinner spinner = findViewById(R.id.spinnerLek);
@@ -56,9 +52,6 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
                 Intent intent;
                 if (index == 2) {
                     intent = new Intent(this, AddBadanieActivity.class);
-                    startActivity(intent);
-                } else if (index == 3) {
-                    intent = new Intent(this, AddObjawyActivity.class);
                     startActivity(intent);
                 }
                 break;

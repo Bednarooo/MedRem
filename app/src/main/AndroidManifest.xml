@@ -41,13 +41,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AddObjawyActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".AddBadanieActivity"
             android:exported="false">
             <meta-data

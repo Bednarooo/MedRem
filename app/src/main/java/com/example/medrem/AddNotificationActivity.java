@@ -33,9 +33,6 @@ public class AddNotificationActivity extends AppCompatActivity implements Adapte
         } else if (index == 2) {
             intent = new Intent(this, AddBadanieActivity.class);
             startActivity(intent);
-        } else if (index == 3) {
-            intent = new Intent(this, AddObjawyActivity.class);
-            startActivity(intent);
         }
     }
 

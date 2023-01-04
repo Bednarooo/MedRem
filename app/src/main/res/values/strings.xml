@@ -10,7 +10,6 @@
     <string name="dodaj_przypomnienie">DODAJ PRZYPOMNIENIE</string>
     <string name="wrocText">Wróć</string>
     <string name="nazwa_pomiaru">Nazwa Pomiaru</string>
-    <string name="wartoscText">Wartość</string>
     <string name="dataText">Data</string>
     <string name="godzina">Godzina</string>
     <string name="zapisz">Zapisz</string>
@@ -40,6 +39,5 @@
         <item>Wybierz Typ</item>
         <item>Zazycie Lekarstwa</item>
         <item>Przeprowadzenie Badania</item>
-        <item>Kontrola Objawów</item>
     </string-array>
 </resources>

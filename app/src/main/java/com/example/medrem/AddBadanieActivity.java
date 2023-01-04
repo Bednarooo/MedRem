@@ -30,9 +30,6 @@ public class AddBadanieActivity extends AppCompatActivity implements AdapterView
         if (index == 1) {
             intent = new Intent(this, AddLekAcivity.class);
             startActivity(intent);
-        } else if (index == 3) {
-            intent = new Intent(this, AddObjawyActivity.class);
-            startActivity(intent);
         }
     }
 

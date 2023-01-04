@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <Switch
-        android:id="@+id/ttsSwitch"
-        android:layout_width="125dp"
-        android:layout_height="44dp"
-        android:text="Syntezator Mowy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="0dp"
