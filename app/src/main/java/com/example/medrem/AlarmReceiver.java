@@ -18,27 +18,53 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int notificationId = intent.getIntExtra("notificationId", 0);
-        String message = intent.getStringExtra("name" + " " + "dose");
-        Intent mainIntent = new Intent(context, AddingMedicineActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (notificationId == 1) {
+            String message = intent.getStringExtra("name") + " " + intent.getStringExtra("dose");
+            Intent mainIntent = new Intent(context, AddingMedicineActivity.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
+            NotificationManager notificationManager =
+                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            CharSequence channel_name = "MedicineNotification";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channel_name, importance);
-            notificationManager.createNotificationChannel(channel);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                CharSequence channel_name = "MedicineNotification";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channel_name, importance);
+                notificationManager.createNotificationChannel(channel);
+            }
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                    .setContentTitle("Get your medicine!")
+                    .setContentText(message)
+                    .setContentIntent(contentIntent)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+
+            notificationManager.notify(notificationId, builder.build());
+        } else {
+            String message = "It's time for " + intent.getStringExtra("name");
+            Intent mainIntent = new Intent(context, AddingMeasurementActivity.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
+            NotificationManager notificationManager =
+                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                CharSequence channel_name = "MeasurmentNotification";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channel_name, importance);
+                notificationManager.createNotificationChannel(channel);
+            }
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                    .setContentTitle("Hurry up!")
+                    .setContentText(message)
+                    .setContentIntent(contentIntent)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+
+            notificationManager.notify(notificationId, builder.build());
         }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                .setContentTitle("Get your medicine!")
-                .setContentText(message)
-                .setContentIntent(contentIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
-
-        notificationManager.notify(notificationId, builder.build());
     }
 }

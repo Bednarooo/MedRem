@@ -1,5 +1,8 @@
 package com.example.medrem;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,12 +22,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AddingMeasurementActivity extends AppCompatActivity {
+
+    private int notificationId = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +84,46 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                                     Toast.makeText(AddingMeasurementActivity.this, "Błąd podczas dodawania pomiaru", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                    Intent intent = new Intent(AddingMeasurementActivity.this, AlarmReceiver.class);
+                    intent.putExtra("notificationId", notificationId);
+                    intent.putExtra("name", measurement.getName());
+
+
+                    PendingIntent alarmIntent = PendingIntent.getBroadcast(AddingMeasurementActivity.this, 0,
+                            intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                    AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                    Date t = null;
+                    try {
+                        t = new SimpleDateFormat("hh:mm").parse(measurement.getTime());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Date d = null;
+                    try {
+                        d = sdf.parse(measurement.getDate());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    long alarmStartTime = combine(d, t).getTimeInMillis();
+                    alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
                     measurementNameEditText.getText().clear();
                 }
             }
         });
+    }
+
+    private static Calendar combine(Date date, Date time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(time);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int min = cal.get(Calendar.MINUTE);
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.MINUTE, min);
+        return cal;
     }
 
     private void replaceFragment(Fragment fragment) {
