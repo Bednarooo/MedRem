@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/wybierz_typ_dawki"
         app:layout_constraintBottom_toBottomOf="@+id/spinnerMedicineDoseType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerMedicineDoseType" />
@@ -20,11 +19,11 @@
         android:id="@+id/timePickerMedicine"
         android:layout_width="281dp"
         android:layout_height="83dp"
-        android:layout_marginBottom="20dp"
         android:timePickerMode="spinner"
-        app:layout_constraintBottom_toTopOf="@+id/calendarMedicine"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextMedicineName"
@@ -94,15 +93,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
-    <CalendarView
-        android:id="@+id/calendarMedicine"
-        android:layout_width="349dp"
-        android:layout_height="260dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/saveMedicineButton"

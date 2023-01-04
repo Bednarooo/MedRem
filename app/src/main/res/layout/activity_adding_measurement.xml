@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AddingMeasurementActivity">
 
-    <CalendarView
-        android:id="@+id/calendarMeasurement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePickerMeasurement" />
-
     <TimePicker
         android:id="@+id/timePickerMeasurement"
         android:layout_width="281dp"

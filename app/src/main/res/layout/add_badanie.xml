@@ -47,6 +47,7 @@
         android:id="@+id/timePickerBadanie"
         android:layout_width="281dp"
         android:layout_height="83dp"
+        android:timePickerMode="spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

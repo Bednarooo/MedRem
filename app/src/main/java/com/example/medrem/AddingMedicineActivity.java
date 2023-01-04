@@ -51,16 +51,17 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
         Spinner medicineDoseTypeSpinner = (Spinner) findViewById(R.id.spinnerMedicineDoseType);
         TimePicker medicineTimePicker = (TimePicker) findViewById(R.id.timePickerMedicine);
 
-        CalendarView medicineCalendarView = (CalendarView) findViewById(R.id.calendarMedicine);
-        medicineCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, month, dayOfMonth);
-                medicineCalendarView.setDate(calendar.getTimeInMillis());
-            }
-        });
+//        todo uzyc tego przy planowaniu terapii
+//        CalendarView medicineCalendarView = (CalendarView) findViewById(R.id.calendarMedicine);
+//        medicineCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+//
+//            @Override
+//            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(year, month, dayOfMonth);
+//                medicineCalendarView.setDate(calendar.getTimeInMillis());
+//            }
+//        });
 
         Button goBackFromMedicineButton = (Button) findViewById(R.id.goBackFromAddingMedicineButton);
         Button saveMedicineButton = (Button) findViewById(R.id.saveMedicineButton);
@@ -84,7 +85,7 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
                 } else {
                     medicine.setName(medicineNameEditText.getText().toString());
                     medicine.setDose(medicineDoseEditText.getText().toString());
-                    medicine.setDate(sdf.format(medicineCalendarView.getDate()));
+                    medicine.setDate(sdf.format(Calendar.getInstance().getTime()));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         medicine.setTime(medicineTimePicker.getHour() + ":" + medicineTimePicker.getMinute());
                     } else {

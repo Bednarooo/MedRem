@@ -34,17 +34,6 @@ public class AddingMeasurementActivity extends AppCompatActivity {
         EditText measurementNameEditText = (EditText) findViewById(R.id.editTextMeasurementName);
         TimePicker measurementTimePicker = (TimePicker) findViewById(R.id.timePickerMeasurement);
 
-        CalendarView measurementCalendarView = (CalendarView) findViewById(R.id.calendarMeasurement);
-        measurementCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, month, dayOfMonth);
-                measurementCalendarView.setDate(calendar.getTimeInMillis());
-            }
-        });
-
         Button saveMeasurementButton = (Button) findViewById(R.id.saveMeasurementButton);
         Button goBackFromAddingMeasurementButton = (Button) findViewById(R.id.goBackFromAddingMeasurementButton);
 
@@ -63,9 +52,9 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                 } else {
                     Measurement measurement = null;
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(measurementCalendarView.getDate()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
+                        measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
                     } else {
-                        measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(measurementCalendarView.getDate()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
+                        measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
 
                     }
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
