@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.UUID;
+
 
 public class AddLekActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Medicine medicine;

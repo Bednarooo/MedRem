@@ -28,7 +28,7 @@ public class Measurement implements Serializable {
     }
 
     public Measurement(){
-
+        clicked = false;
     }
 
     public String getMeasurementId() {

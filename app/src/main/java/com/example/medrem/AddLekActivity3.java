@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class AddLekActivity3 extends AppCompatActivity {
     private Medicine medicine;
@@ -81,12 +82,15 @@ public class AddLekActivity3 extends AppCompatActivity {
                         mapMedicine.put("doseType", medicine.getDoseType());
                         mapMedicine.put("date", sdf.format(date));
                         mapMedicine.put("time", medicine.getTime());
-                        db.collection("medicines")
-                                .add(mapMedicine)
+                        mapMedicine.put("clicked", medicine.isClicked());
+                        medicine.setMedicineId(UUID.randomUUID().toString());
+                        db.collection("medicines").document(medicine.getMedicineId())
+                                .set(mapMedicine)
                                 .addOnSuccessListener(documentReference -> Toast.makeText(this, "Pomyslnie dodano lek", Toast.LENGTH_SHORT).show())
                                 .addOnFailureListener(e -> Toast.makeText(this, "Blad podczas dodawania leku", Toast.LENGTH_SHORT));
                         Intent intent = new Intent(this, AlarmReceiver.class);
                         intent.putExtra("notificationId", notificationId);
+                        intent.putExtra("medicineId", medicine.getMedicineId());
                         intent.putExtra("name", medicine.getName());
                         intent.putExtra("dose", medicine.getDose() + " " + medicine.getDoseType().toString());
 

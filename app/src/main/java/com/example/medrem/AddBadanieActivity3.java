@@ -79,13 +79,15 @@ public class AddBadanieActivity3 extends AppCompatActivity {
                         mapMeasurement.put("name", measurement.getName());
                         mapMeasurement.put("date", sdf.format(date));
                         mapMeasurement.put("time", measurement.getTime());
+                        mapMeasurement.put("clicked", measurement.isClicked());
 
-                        db.collection("measurements")
-                                .add(measurement)
+                        db.collection("measurements").document(measurement.getMeasurementId())
+                                .set(measurement)
                                 .addOnSuccessListener(documentReference -> Toast.makeText(this, "Pomyślnie dodano pomiar", Toast.LENGTH_SHORT).show())
                                 .addOnFailureListener(e -> Toast.makeText(this, "Błąd podczas dodawania pomiaru", Toast.LENGTH_SHORT).show());
                         Intent intent = new Intent(this, AlarmReceiver.class);
                         intent.putExtra("notificationId", notificationId);
+                        intent.putExtra("measurementId", measurement.getMeasurementId());
                         intent.putExtra("name", measurement.getName());
 
                         PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0,
