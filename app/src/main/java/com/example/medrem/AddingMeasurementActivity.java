@@ -43,7 +43,7 @@ public class AddingMeasurementActivity extends AppCompatActivity {
         Button saveMeasurementButton = findViewById(R.id.saveMeasurementButton);
         Button goBackFromAddingMeasurementButton = findViewById(R.id.goBackFromAddingMeasurementButton);
 
-        goBackFromAddingMeasurementButton.setOnClickListener(v -> replaceFragment(new TodayFragment()));
+        goBackFromAddingMeasurementButton.setOnClickListener(v -> openMainActivity());
 
         saveMeasurementButton.setOnClickListener(v -> {
             if (measurementNameEditText.getText().toString().equals("")) {
@@ -92,8 +92,14 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                 long alarmStartTime = combine(d, t).getTimeInMillis();
                 alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
                 measurementNameEditText.getText().clear();
+                openMainActivity();
             }
         });
+    }
+
+    private void openMainActivity() {
+    Intent intent = new Intent(this, MainActivity.class);
+    startActivity(intent);
     }
 
     private static Calendar combine(Date date, Date time) {

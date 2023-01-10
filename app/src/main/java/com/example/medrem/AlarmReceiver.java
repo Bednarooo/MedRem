@@ -20,7 +20,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         int notificationId = intent.getIntExtra("notificationId", 0);
 
         if (notificationId == 1) {
-            String message = intent.getStringExtra("name") + " " + intent.getStringExtra("dose");
+            String message = "Czas na " + intent.getStringExtra("name") + " " + intent.getStringExtra("dose");
             Intent mainIntent = new Intent(context, AddingMedicineActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
             NotificationManager notificationManager =
@@ -35,7 +35,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                    .setContentTitle("Get your medicine!")
+                    .setContentTitle("Uwaga!")
                     .setContentText(message)
                     .setContentIntent(contentIntent)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -43,7 +43,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             notificationManager.notify(notificationId, builder.build());
         } else {
-            String message = "It's time for " + intent.getStringExtra("name");
+            String message = "Czas na " + intent.getStringExtra("name");
             Intent mainIntent = new Intent(context, AddingMeasurementActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
             NotificationManager notificationManager =
@@ -58,7 +58,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                    .setContentTitle("Hurry up!")
+                    .setContentTitle("Uwaga!")
                     .setContentText(message)
                     .setContentIntent(contentIntent)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
