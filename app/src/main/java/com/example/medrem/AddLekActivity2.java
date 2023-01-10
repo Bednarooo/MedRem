@@ -31,12 +31,12 @@ public class AddLekActivity2 extends AppCompatActivity {
 
 
         Button goBackFromAddingLekButton = findViewById(R.id.anuluj2LekButton);
-        Button goToSelectDateActivity = findViewById(R.id.dalej2LekButton);
+        Button goToSelectDateActivityButton = findViewById(R.id.dalej2LekButton);
 
         goBackFromAddingLekButton.setOnClickListener(
                 v -> openMainActivity());
 
-        goToSelectDateActivity.setOnClickListener(
+        goToSelectDateActivityButton.setOnClickListener(
                 v -> {
                     medicine.setDate(sdf.format(calendarFrom.getDate()));
                     goToDateSelectionActivity(medicine);
