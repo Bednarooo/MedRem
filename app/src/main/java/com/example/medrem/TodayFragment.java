@@ -40,7 +40,6 @@ public class TodayFragment extends Fragment {
         ArrayList<String> possibleChoicesArray = new ArrayList<>();
         possibleChoicesArray.add("Lek");
         possibleChoicesArray.add("Pomiar");
-        possibleChoicesArray.add("Kontrola objawów");
         ArrayAdapter<String> possibleChoicesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, possibleChoicesArray);
         listViewWithChoices.setAdapter(possibleChoicesAdapter);
         addOneButton.setOnClickListener(new View.OnClickListener()
