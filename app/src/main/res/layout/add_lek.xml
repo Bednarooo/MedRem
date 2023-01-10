@@ -41,10 +41,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.178" />
 
     <EditText
         android:id="@+id/textDawka"
@@ -54,10 +54,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintVertical_bias="0.281" />
 
     <Spinner
         android:id="@+id/spinnerLekDawka"
@@ -66,22 +66,22 @@
         android:contentDescription="@string/wybierz_typ_dawki"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.401" />
 
     <TimePicker
         android:id="@+id/timePickerLek"
         android:layout_width="294dp"
-        android:layout_height="71dp"
+        android:layout_height="83dp"
         android:timePickerMode="spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.922" />
+        app:layout_constraintVertical_bias="0.52" />
 
     <LinearLayout
         android:layout_width="405dp"
@@ -95,11 +95,11 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/ustawLekButton"
+            android:id="@+id/dalejLekButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="@string/ustaw" />
+            android:text="@string/dalej" />
 
         <Button
             android:id="@+id/anulujLekButton"
@@ -108,13 +108,4 @@
             android:text="@string/anuluj" />
     </LinearLayout>
 
-    <CalendarView
-        android:id="@+id/calendarViewLek"
-        android:layout_width="341dp"
-        android:layout_height="318dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.713" />
 </androidx.constraintlayout.widget.ConstraintLayout>

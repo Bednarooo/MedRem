@@ -1,22 +1,23 @@
 package com.example.medrem;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Medicine medicine;
 
-    private CalendarView calendarViewLek;
     private TimePicker timePickerLek;
 
     @Override
@@ -38,10 +39,44 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
         spinnerDawka.setAdapter(adapterDawka);
         spinnerDawka.setOnItemSelectedListener(this);
 
-        findViewById(R.id.ustawLekButton).setOnClickListener(this);
-        findViewById(R.id.anulujLekButton).setOnClickListener(this);
-        calendarViewLek = findViewById(R.id.calendarViewLek);
+        Button goBackFromAddingLekButton = findViewById(R.id.anulujLekButton);
+        Button goToSelectDateActivity = findViewById(R.id.dalejLekButton);
+
+        goBackFromAddingLekButton.setOnClickListener(
+                v -> openMainActivity());
+
+        goToSelectDateActivity.setOnClickListener(
+                v -> {
+                    EditText editTextNazwa = findViewById(R.id.textNazwaLeku);
+                    EditText editTextDawka = findViewById(R.id.textDawka);
+                    timePickerLek = findViewById(R.id.timePickerLek);
+                    if (editTextNazwa.getText().toString().equals("") || editTextDawka.getText().toString().equals("") || medicine.getDoseType() == null) {
+                        Toast.makeText(AddLekAcivity.this, "Należy podać nazwę leku, dawkę oraz typ dawkowania", Toast.LENGTH_LONG).show();
+                    } else {
+                        medicine.setName(editTextNazwa.getText().toString());
+                        medicine.setDose(editTextDawka.getText().toString());
+                        medicine.setTime(null);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            medicine.setTime(timePickerLek.getHour() + ":" + timePickerLek.getMinute());
+                        } else {
+                            medicine.setTime(timePickerLek.getCurrentHour() + ":" + timePickerLek.getCurrentMinute());
+                        }
+                        goToDateSelectionActivity(medicine);
+                    }
+                }
+        );
         timePickerLek = findViewById(R.id.timePickerLek);
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(AddLekAcivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToDateSelectionActivity(Medicine medicine) {
+        Intent intent = new Intent(AddLekAcivity.this, AddLekAcivity2.class);
+        intent.putExtra("medicine", medicine);
+        startActivity(intent);
     }
 
     @Override
@@ -77,15 +112,6 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        EditText editTextNazwa = findViewById(R.id.textNazwaLeku);
-        EditText editTextDawka = findViewById(R.id.textDawka);
-        TimePicker timePickerLek = findViewById(R.id.timePickerLek);
-        CalendarView calendarView = findViewById(R.id.calendarViewLek);
 
     }
 }

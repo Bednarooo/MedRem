@@ -1,6 +1,8 @@
 package com.example.medrem;
 
-public class Measurement {
+import java.io.Serializable;
+
+public class Measurement implements Serializable {
     private String name;
     private String date;
     private String time;

@@ -18,12 +18,15 @@
     <string name="dodaj_przypomnienie_title">Dodaj Przypomnienie</string>
     <string name="nazwa_leku">Nazwa leku</string>
     <string name="ustaw">Ustaw</string>
+    <string name="dalej">Dalej</string>
     <string name="anuluj">Anuluj</string>
     <string name="dawka">Dawka</string>
     <string name="rodzaj_badania">Podaj Rodzaj Badania</string>
     <string name="powrot">POWROT</string>
     <string name="leki">Leki</string>
     <string name="pomiary">Pomiary</string>
+    <string name="od">Od:</string>
+    <string name="doo">Do:</string>
     <string-array name="typ_dawki">
         <item>Wybierz Rodzaj Dawkowania</item>
         <item>Gramy</item>

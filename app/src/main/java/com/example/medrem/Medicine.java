@@ -1,6 +1,8 @@
 package com.example.medrem;
 
-public class Medicine {
+import java.io.Serializable;
+
+public class Medicine implements Serializable {
     private String name;
     private String dose;
     private DoseType doseType;
