@@ -54,7 +54,7 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
         medicineDoseTypeSpinner.setAdapter(spinnerDoseTypeAdapter);
         medicineDoseTypeSpinner.setOnItemSelectedListener(this);
 
-        goBackFromMedicineButton.setOnClickListener(v -> replaceFragment(new TodayFragment()));
+        goBackFromMedicineButton.setOnClickListener(v -> openMainActivity());
         saveMedicineButton.setOnClickListener(v -> {
             if (medicineNameEditText.getText().toString().equals("") || medicineDoseEditText.getText().toString().equals("") || medicineDoseTypeSpinner.getSelectedItemPosition() == 0) {
                 Toast.makeText(AddingMedicineActivity.this, "Należy podać nazwę leku, dawkę oraz typ dawkowania", Toast.LENGTH_LONG).show();
@@ -103,8 +103,14 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
 
                 long alarmStartTime = combine(d, t).getTimeInMillis();
                 alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+                openMainActivity();
             }
         });
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     private static Calendar combine(Date date, Date time) {
