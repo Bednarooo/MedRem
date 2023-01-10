@@ -52,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
         if (getIntent().hasExtra("measurementId")) {
             MeasurementClicked();
         }
+        if (getIntent().hasExtra("medicineId")) {
+            MedicineClicked();
+        }
+    }
+
+    private void MedicineClicked() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection("medicines").document(getIntent().getStringExtra("medicineId"));
+        documentReference.update("clicked", true);
     }
 
     private void MeasurementClicked() {

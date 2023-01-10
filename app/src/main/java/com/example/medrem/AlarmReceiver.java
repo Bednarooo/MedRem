@@ -21,8 +21,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         if (notificationId == 1) {
             String message = "Czas na " + intent.getStringExtra("name") + " " + intent.getStringExtra("dose");
-            Intent mainIntent = new Intent(context, AddingMedicineActivity.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
+            String id = intent.getStringExtra("medicineId");
+            Intent mainIntent = new Intent(context, MainActivity.class);
+            mainIntent.putExtra("medicineId", id);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationManager notificationManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 

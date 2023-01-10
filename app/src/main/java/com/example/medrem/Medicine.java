@@ -3,21 +3,37 @@ package com.example.medrem;
 import java.io.Serializable;
 
 public class Medicine implements Serializable {
+    private String medicineId;
     private String name;
     private String dose;
     private DoseType doseType;
     private String date;
     private String time;
-
     private String username;
+    private boolean clicked;
 
-    public Medicine(String name, String dose, DoseType doseType, String date, String time, String username) {
+    public Medicine(String medicineId, String name, String dose, DoseType doseType, String date, String time, String username) {
+        this.medicineId = medicineId;
         this.name = name;
         this.dose = dose;
         this.doseType = doseType;
         this.date = date;
         this.time = time;
         this.username = username;
+        clicked = false;
+    }
+
+
+    public String getMedicineId() {
+        return medicineId;
+    }
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
     }
 
     public String getDate() {
@@ -37,6 +53,11 @@ public class Medicine implements Serializable {
     }
 
     public Medicine() {
+        clicked = false;
+    }
+
+    public void setMedicineId(String medicineId) {
+        this.medicineId = medicineId;
     }
 
     public String getName() {

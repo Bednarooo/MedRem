@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddingMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Medicine medicine;
@@ -61,6 +62,7 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
             if (medicineNameEditText.getText().toString().equals("") || medicineDoseEditText.getText().toString().equals("") || medicineDoseTypeSpinner.getSelectedItemPosition() == 0) {
                 Toast.makeText(AddingMedicineActivity.this, "Należy podać nazwę leku, dawkę oraz typ dawkowania", Toast.LENGTH_LONG).show();
             } else {
+                medicine.setMedicineId(UUID.randomUUID().toString());
                 medicine.setName(medicineNameEditText.getText().toString());
                 medicine.setDose(medicineDoseEditText.getText().toString());
                 medicine.setDate(sdf.format(Calendar.getInstance().getTime()));
@@ -77,12 +79,14 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
                 mapMedicine.put("doseType", medicine.getDoseType());
                 mapMedicine.put("date", medicine.getDate());
                 mapMedicine.put("time", medicine.getTime());
-                db.collection("medicines")
-                        .add(mapMedicine)
+                mapMedicine.put("clicked", medicine.isClicked());
+                db.collection("medicines").document(medicine.getMedicineId())
+                        .set(mapMedicine)
                         .addOnSuccessListener(documentReference -> Toast.makeText(AddingMedicineActivity.this, "Pomyślnie dodano lek", Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Toast.makeText(AddingMedicineActivity.this, "Błąd podczas dodawania leku", Toast.LENGTH_SHORT).show());
                 Intent intent = new Intent(AddingMedicineActivity.this, AlarmReceiver.class);
                 intent.putExtra("notificationId", notificationId);
+                intent.putExtra("medicineId", medicine.getMedicineId());
                 intent.putExtra("name", medicine.getName());
                 intent.putExtra("dose", medicine.getDose() + " " + medicine.getDoseType().toString());
 
