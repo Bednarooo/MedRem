@@ -85,6 +85,16 @@ public class LoginDataSource {
 
     public void logout() {
         instance.set(null);
+        delete();
+    }
+
+    public boolean delete() {
+        Context context = MyApplication.getAppContext();
+        SharedPreferences settings = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("username", null);
+        editor.putString("password", null);
+        return editor.commit();
     }
 
     public boolean save(User user) {

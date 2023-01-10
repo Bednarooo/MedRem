@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.medrem.data.LoginDataSource;
+import com.example.medrem.data.LoginRepository;
+import com.example.medrem.ui.login.LoginActivity;
+
 import java.util.ArrayList;
 
 
@@ -36,6 +40,7 @@ public class TodayFragment extends Fragment {
         TextView initialText = (TextView) view.findViewById(R.id.todayInitialText);
         Button addOneButton = (Button) view.findViewById(R.id.addOneButton);
         Button goBackButton = (Button) view.findViewById(R.id.goBackButton);
+        Button buttonLogout = (Button) view.findViewById(R.id.buttonLogout);
         ListView listViewWithChoices = (ListView) view.findViewById(R.id.possibleChoices);
         ArrayList<String> possibleChoicesArray = new ArrayList<>();
         possibleChoicesArray.add("Lek");
@@ -100,6 +105,16 @@ public class TodayFragment extends Fragment {
                 }
             }
         });
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginRepository.getInstance(LoginDataSource.getInstance()).logout();
+                Intent switchActivityToLoginActivity = new Intent(getActivity(), LoginActivity.class);
+                startActivity(switchActivityToLoginActivity);
+            }
+        });
+
         return view;
     }
 }
