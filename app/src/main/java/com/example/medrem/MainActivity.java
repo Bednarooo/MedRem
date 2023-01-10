@@ -13,6 +13,8 @@ import com.example.medrem.data.LoginDataSource;
 import com.example.medrem.data.LoginRepository;
 import com.example.medrem.databinding.ActivityMainBinding;
 import com.example.medrem.ui.login.LoginActivity;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             Intent loginActivity = new Intent(this, LoginActivity.class);
             startActivity(loginActivity);
         }
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -45,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+        if (getIntent().hasExtra("measurementId")) {
+            MeasurementClicked();
+        }
+    }
+
+    private void MeasurementClicked() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection("measurements").document(getIntent().getStringExtra("measurementId"));
+        documentReference.update("clicked", true);
     }
 
     private void replaceFragment(Fragment fragment) {

@@ -44,14 +44,16 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificationManager.notify(notificationId, builder.build());
         } else {
             String message = "Czas na " + intent.getStringExtra("name");
-            Intent mainIntent = new Intent(context, AddingMeasurementActivity.class);
+            String id = intent.getStringExtra("measurementId");
+            Intent mainIntent = new Intent(context, MainActivity.class);
+            mainIntent.putExtra("measurementId", id);
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
             NotificationManager notificationManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                CharSequence channel_name = "MeasurmentNotification";
+                CharSequence channel_name = "MeasurementNotification";
                 int importance = NotificationManager.IMPORTANCE_DEFAULT;
                 NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channel_name, importance);
                 notificationManager.createNotificationChannel(channel);
