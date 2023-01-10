@@ -3,7 +3,7 @@
     <string name="today">Dzisiaj</string>
     <string name="progress">Postęp</string>
     <string name="therapy">Terapia</string>
-    <string name="TodayFragmentInitialText">Twoje codzienne zadania pojawią się tutaj, gdy zaplanujesz je w sekcji Terapia</string>
+    <string name="TodayFragmentInitialText">Dodaj jednorazowy wpis oznaczający zażycie leku bądź pomiar</string>
     <string name="TherapyFragmentInitialText">Otrzymuj przypomnienia o lekach, pomiarach i wiele więcej</string>
     <string name="ProgressFragmentInitialText">Kiedy potwierdzisz pierwsze przypomnienia, znajdziesz tutaj wszystkie swoje wcześniejsze wpisy</string>
     <string name="dodaj_jednorazowy_wpis">Dodaj jednorazowy wpis</string>
