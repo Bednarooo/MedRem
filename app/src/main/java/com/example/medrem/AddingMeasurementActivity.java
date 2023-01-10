@@ -4,21 +4,16 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -27,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddingMeasurementActivity extends AppCompatActivity {
 
@@ -51,9 +47,9 @@ public class AddingMeasurementActivity extends AppCompatActivity {
             } else {
                 Measurement measurement = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
+                    measurement = new Measurement(UUID.randomUUID(), measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
                 } else {
-                    measurement = new Measurement(measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
+                    measurement = new Measurement(UUID.randomUUID(), measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
 
                 }
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -61,13 +57,15 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                 mapMeasurement.put("name", measurement.getName());
                 mapMeasurement.put("date", measurement.getDate());
                 mapMeasurement.put("time", measurement.getTime());
+                mapMeasurement.put("clicked", measurement.isClicked());
 
-                db.collection("measurements")
-                        .add(mapMeasurement)
+                db.collection("measurements").document(measurement.getMeasurementId().toString())
+                        .set(mapMeasurement)
                         .addOnSuccessListener(documentReference -> Toast.makeText(AddingMeasurementActivity.this, "Pomyślnie dodano pomiar", Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Toast.makeText(AddingMeasurementActivity.this, "Błąd podczas dodawania pomiaru", Toast.LENGTH_SHORT).show());
                 Intent intent = new Intent(AddingMeasurementActivity.this, AlarmReceiver.class);
                 intent.putExtra("notificationId", notificationId);
+                intent.putExtra("measurementId", measurement.getMeasurementId().toString());
                 intent.putExtra("name", measurement.getName());
 
 
