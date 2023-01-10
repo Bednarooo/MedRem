@@ -1,5 +1,7 @@
 package com.example.medrem;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -21,6 +23,7 @@ import java.util.Objects;
 
 public class AddLekActivity3 extends AppCompatActivity {
     private Medicine medicine;
+    private int notificationId = 1;
     private ArrayList<Date> datesInRange = new ArrayList<>();
 
     @Override
@@ -79,6 +82,31 @@ public class AddLekActivity3 extends AppCompatActivity {
                                 .add(mapMedicine)
                                 .addOnSuccessListener(documentReference -> Toast.makeText(this, "Pomyslnie dodano lek", Toast.LENGTH_SHORT).show())
                                 .addOnFailureListener(e -> Toast.makeText(this, "Blad podczas dodawania leku", Toast.LENGTH_SHORT));
+                        Intent intent = new Intent(this, AlarmReceiver.class);
+                        intent.putExtra("notificationId", notificationId);
+                        intent.putExtra("name", medicine.getName());
+                        intent.putExtra("dose", medicine.getDose() + " " + medicine.getDoseType().toString());
+
+                        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0,
+                                intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                        Date t = null;
+                        try {
+                            t = new SimpleDateFormat("hh:mm").parse(medicine.getTime());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Date d = null;
+                        try {
+                            d = sdf.parse(sdf.format(date));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        long alarmStartTime = combine(d, t).getTimeInMillis();
+                        alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
                     }
                 }
         );
@@ -87,5 +115,16 @@ public class AddLekActivity3 extends AppCompatActivity {
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private static Calendar combine(Date date, Date time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(time);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int min = cal.get(Calendar.MINUTE);
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+        cal.set(Calendar.MINUTE, min);
+        return cal;
     }
 }

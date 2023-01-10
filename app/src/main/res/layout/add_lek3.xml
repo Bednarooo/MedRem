@@ -32,8 +32,8 @@
 
     <CalendarView
         android:id="@+id/calendarViewLekTo"
-        android:layout_width="341dp"
-        android:layout_height="318dp"
+        android:layout_width="337dp"
+        android:layout_height="385dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
