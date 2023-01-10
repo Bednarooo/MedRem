@@ -31,6 +31,10 @@ public class Measurement implements Serializable {
         clicked = false;
     }
 
+    public void setMeasurementId(String measurementId) {
+        this.measurementId = measurementId;
+    }
+
     public String getMeasurementId() {
         return measurementId;
     }

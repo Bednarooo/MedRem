@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class AddBadanieActivity3 extends AppCompatActivity {
     private Measurement measurement;
@@ -80,6 +81,8 @@ public class AddBadanieActivity3 extends AppCompatActivity {
                         mapMeasurement.put("date", sdf.format(date));
                         mapMeasurement.put("time", measurement.getTime());
                         mapMeasurement.put("clicked", measurement.isClicked());
+
+                        measurement.setMeasurementId(UUID.randomUUID().toString());
 
                         db.collection("measurements").document(measurement.getMeasurementId())
                                 .set(measurement)
