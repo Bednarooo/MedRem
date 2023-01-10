@@ -25,6 +25,8 @@ public class AddBadanieActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_badanie);
 
+        measurement = new Measurement();
+
         Spinner spinner = findViewById(R.id.spinnerBadanie);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.typ_przypomnienia, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

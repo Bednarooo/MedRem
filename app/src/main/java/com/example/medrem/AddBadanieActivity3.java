@@ -105,6 +105,7 @@ public class AddBadanieActivity3 extends AppCompatActivity {
                         long alarmStartTime = combine(d, t).getTimeInMillis();
                         alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
                     }
+                    openMainActivity();
                 }
         );
     }
