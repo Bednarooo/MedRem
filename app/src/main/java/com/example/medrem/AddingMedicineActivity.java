@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.medrem.data.LoginDataSource;
+import com.example.medrem.data.LoginRepository;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -69,6 +71,7 @@ public class AddingMedicineActivity extends AppCompatActivity implements Adapter
                 }
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 Map<String, Object> mapMedicine = new HashMap<>();
+                mapMedicine.put("username", LoginRepository.getInstance(LoginDataSource.getInstance()).getUsername());
                 mapMedicine.put("name", medicine.getName());
                 mapMedicine.put("dose", medicine.getDose());
                 mapMedicine.put("doseType", medicine.getDoseType());

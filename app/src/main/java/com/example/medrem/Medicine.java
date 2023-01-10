@@ -9,12 +9,15 @@ public class Medicine implements Serializable {
     private String date;
     private String time;
 
-    public Medicine(String name, String dose, DoseType doseType, String date, String time) {
+    private String username;
+
+    public Medicine(String name, String dose, DoseType doseType, String date, String time, String username) {
         this.name = name;
         this.dose = dose;
         this.doseType = doseType;
         this.date = date;
         this.time = time;
+        this.username = username;
     }
 
     public String getDate() {
@@ -58,5 +61,13 @@ public class Medicine implements Serializable {
 
     public void setDoseType(DoseType doseType) {
         this.doseType = doseType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

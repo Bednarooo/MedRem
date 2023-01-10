@@ -4,7 +4,11 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import static java.lang.Thread.sleep;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.example.medrem.MyApplication;
 import com.example.medrem.data.model.LoggedInUser;
 import com.example.medrem.ui.login.User;
 import com.google.android.gms.tasks.Tasks;
@@ -22,7 +26,7 @@ public class LoginDataSource {
     private static volatile AtomicReference<LoggedInUser> instance = new AtomicReference<>();
     private List<User> users;
 
-    public LoginDataSource() {
+    private LoginDataSource() {
         db = FirebaseFirestore.getInstance();
         users = new ArrayList<>();
 
@@ -38,6 +42,12 @@ public class LoginDataSource {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
                 });
+    }
+
+    private static LoginDataSource loginDataSourceInstance = new LoginDataSource();
+
+    public static LoginDataSource getInstance() {
+        return loginDataSourceInstance;
     }
 
     public Result<LoggedInUser> login(String username, String password) {
@@ -75,5 +85,38 @@ public class LoginDataSource {
 
     public void logout() {
         instance.set(null);
+    }
+
+    public boolean save(User user) {
+        Context context = MyApplication.getAppContext();
+        SharedPreferences settings = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("username", user.getUserId());
+        editor.putString("password", user.getPassword());
+        return editor.commit();
+    }
+
+    public User load() {
+        Context context = MyApplication.getAppContext();
+        SharedPreferences settings = context.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+
+        String username = settings.getString("username", null);
+        String password = settings.getString("password", null);
+
+        System.out.println("Loaded username");
+        System.out.println(username);
+        System.out.println("Loaded password");
+        System.out.println(password);
+
+        if (username == null || password == null) {
+            return null;
+        }
+
+
+        return new User(
+                username,
+                username,
+                password
+        );
     }
 }
