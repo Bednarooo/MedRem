@@ -52,9 +52,9 @@ public class AddingMeasurementActivity extends AppCompatActivity {
             } else {
                 Measurement measurement = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    measurement = new Measurement(UUID.randomUUID(), measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
+                    measurement = new Measurement(UUID.randomUUID().toString(), measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getHour() + ":" + measurementTimePicker.getMinute());
                 } else {
-                    measurement = new Measurement(UUID.randomUUID(), measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
+                    measurement = new Measurement(UUID.randomUUID().toString(), measurementNameEditText.getText().toString(), sdf.format(Calendar.getInstance().getTime()), measurementTimePicker.getCurrentHour() + ":" + measurementTimePicker.getCurrentMinute());
 
                 }
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -65,13 +65,13 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                 mapMeasurement.put("time", measurement.getTime());
                 mapMeasurement.put("clicked", measurement.isClicked());
 
-                db.collection("measurements").document(measurement.getMeasurementId().toString())
+                db.collection("measurements").document(measurement.getMeasurementId())
                         .set(mapMeasurement)
                         .addOnSuccessListener(documentReference -> Toast.makeText(AddingMeasurementActivity.this, "Pomyślnie dodano pomiar", Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Toast.makeText(AddingMeasurementActivity.this, "Błąd podczas dodawania pomiaru", Toast.LENGTH_SHORT).show());
                 Intent intent = new Intent(AddingMeasurementActivity.this, AlarmReceiver.class);
                 intent.putExtra("notificationId", notificationId);
-                intent.putExtra("measurementId", measurement.getMeasurementId().toString());
+                intent.putExtra("measurementId", measurement.getMeasurementId());
                 intent.putExtra("name", measurement.getName());
 
 

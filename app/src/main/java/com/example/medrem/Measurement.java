@@ -1,17 +1,16 @@
 package com.example.medrem;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 public class Measurement implements Serializable {
-    private UUID measurementId;
+    private String measurementId;
     private String name;
     private String date;
     private String time;
     private String username;
     private boolean clicked;
 
-    public Measurement(UUID measurementId, String name, String date, String time) {
+    public Measurement(String measurementId, String name, String date, String time) {
         this.measurementId = measurementId;
         this.name = name;
         this.date = date;
@@ -19,18 +18,20 @@ public class Measurement implements Serializable {
         clicked = false;
     }
 
-    public Measurement(String name, String date, String time, String username) {
+    public Measurement(String measurementId, String name, String date, String time, String username) {
+        this.measurementId = measurementId;
         this.name = name;
         this.date = date;
         this.time = time;
         this.username = username;
+        clicked = false;
     }
 
     public Measurement(){
 
     }
 
-    public UUID getMeasurementId() {
+    public String getMeasurementId() {
         return measurementId;
     }
 

@@ -47,7 +47,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             String id = intent.getStringExtra("measurementId");
             Intent mainIntent = new Intent(context, MainActivity.class);
             mainIntent.putExtra("measurementId", id);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationManager notificationManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
