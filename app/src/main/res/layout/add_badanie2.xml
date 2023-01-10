@@ -4,18 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddBadanieActivity">
-
-    <Spinner
-        android:id="@+id/spinnerBadanie"
-        android:layout_width="339dp"
-        android:layout_height="48dp"
-        android:contentDescription="@string/wybierz_typ"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+    tools:context=".AddBadanieActivity2">
 
     <TextView
         android:id="@+id/textView2"
@@ -31,29 +20,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.009" />
 
-    <EditText
-        android:id="@+id/textBadanie"
-        android:layout_width="339dp"
-        android:layout_height="49dp"
-        android:hint="@string/rodzaj_badania"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.137" />
 
-    <TimePicker
-        android:id="@+id/timePickerBadanie"
-        android:layout_width="281dp"
-        android:layout_height="83dp"
-        android:timePickerMode="spinner"
+    <CalendarView
+        android:id="@+id/calendarViewBadanieFrom"
+        android:layout_width="337dp"
+        android:layout_height="385dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.205" />
 
     <LinearLayout
         android:layout_width="405dp"
@@ -67,17 +44,27 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/dalejBadanieButton"
+            android:id="@+id/dalej2BadanieButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:text="@string/dalej" />
 
         <Button
-            android:id="@+id/anulujBadanieButton"
+            android:id="@+id/anuluj2BadanieButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/anuluj" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/od"
+        app:layout_constraintBottom_toTopOf="@+id/calendarViewBadanieFrom"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
