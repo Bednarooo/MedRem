@@ -8,6 +8,7 @@ public class Measurement implements Serializable {
     private String name;
     private String date;
     private String time;
+    private String username;
     private boolean clicked;
 
     public Measurement(UUID measurementId, String name, String date, String time) {
@@ -16,6 +17,13 @@ public class Measurement implements Serializable {
         this.date = date;
         this.time = time;
         clicked = false;
+    }
+
+    public Measurement(String name, String date, String time, String username) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.username = username;
     }
 
     public Measurement(){
@@ -56,5 +64,13 @@ public class Measurement implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

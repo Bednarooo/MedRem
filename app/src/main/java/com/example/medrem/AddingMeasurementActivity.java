@@ -14,6 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.medrem.data.LoginDataSource;
+import com.example.medrem.data.LoginRepository;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -54,6 +59,7 @@ public class AddingMeasurementActivity extends AppCompatActivity {
                 }
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 Map<String, Object> mapMeasurement = new HashMap<>();
+                mapMeasurement.put("username", LoginRepository.getInstance(LoginDataSource.getInstance()).getUsername());
                 mapMeasurement.put("name", measurement.getName());
                 mapMeasurement.put("date", measurement.getDate());
                 mapMeasurement.put("time", measurement.getTime());

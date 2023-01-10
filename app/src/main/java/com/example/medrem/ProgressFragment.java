@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.medrem.data.LoginDataSource;
+import com.example.medrem.data.LoginRepository;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -53,7 +55,11 @@ public class ProgressFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            medicinesFromDb.add(document.toObject(Medicine.class));
+                            Medicine medicine = document.toObject(Medicine.class);
+                            if (medicine.getUsername() != null &&
+                                    medicine.getUsername().equals(LoginRepository.getInstance(LoginDataSource.getInstance()).getUsername())) {
+                                medicinesFromDb.add(medicine);
+                            }
                         }
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
@@ -66,7 +72,12 @@ public class ProgressFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            measurementsFromDb.add(document.toObject(Measurement.class));
+                            Measurement measurement = document.toObject(Measurement.class);
+
+                            if (measurement.getUsername() != null &&
+                                    measurement.getUsername().equals(LoginRepository.getInstance(LoginDataSource.getInstance()).getUsername())) {
+                                measurementsFromDb.add(measurement);
+                            }
                         }
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());

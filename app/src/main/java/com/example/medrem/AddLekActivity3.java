@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.medrem.data.LoginDataSource;
+import com.example.medrem.data.LoginRepository;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -73,6 +75,7 @@ public class AddLekActivity3 extends AppCompatActivity {
 
                     for (Date date : datesInRange) {
                         Map<String, Object> mapMedicine = new HashMap<>();
+                        mapMedicine.put("username", LoginRepository.getInstance(LoginDataSource.getInstance()).getUsername());
                         mapMedicine.put("name", medicine.getName());
                         mapMedicine.put("dose", medicine.getDose());
                         mapMedicine.put("doseType", medicine.getDoseType());

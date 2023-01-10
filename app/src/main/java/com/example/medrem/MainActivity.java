@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!LoginRepository.getInstance(new LoginDataSource()).isLoggedIn()) {
+        if (!LoginRepository.getInstance(LoginDataSource.getInstance()).isLoggedIn()) {
             Intent loginActivity = new Intent(this, LoginActivity.class);
             startActivity(loginActivity);
         }

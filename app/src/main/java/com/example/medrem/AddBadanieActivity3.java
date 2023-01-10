@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.example.medrem.data.LoginDataSource;
+import com.example.medrem.data.LoginRepository;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -73,6 +75,7 @@ public class AddBadanieActivity3 extends AppCompatActivity {
 
                     for (Date date : datesInRange) {
                         Map<String, Object> mapMeasurement = new HashMap<>();
+                        mapMeasurement.put("username", LoginRepository.getInstance(LoginDataSource.getInstance()).getUsername());
                         mapMeasurement.put("name", measurement.getName());
                         mapMeasurement.put("date", sdf.format(date));
                         mapMeasurement.put("time", measurement.getTime());
