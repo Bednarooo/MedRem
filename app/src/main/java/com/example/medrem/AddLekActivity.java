@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddLekActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Medicine medicine;
 
     private TimePicker timePickerLek;
@@ -51,7 +51,7 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
                     EditText editTextDawka = findViewById(R.id.textDawka);
                     timePickerLek = findViewById(R.id.timePickerLek);
                     if (editTextNazwa.getText().toString().equals("") || editTextDawka.getText().toString().equals("") || medicine.getDoseType() == null) {
-                        Toast.makeText(AddLekAcivity.this, "Należy podać nazwę leku, dawkę oraz typ dawkowania", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddLekActivity.this, "Należy podać nazwę leku, dawkę oraz typ dawkowania", Toast.LENGTH_LONG).show();
                     } else {
                         medicine.setName(editTextNazwa.getText().toString());
                         medicine.setDose(editTextDawka.getText().toString());
@@ -69,12 +69,12 @@ public class AddLekAcivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void openMainActivity() {
-        Intent intent = new Intent(AddLekAcivity.this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     private void goToDateSelectionActivity(Medicine medicine) {
-        Intent intent = new Intent(AddLekAcivity.this, AddLekAcivity2.class);
+        Intent intent = new Intent(this, AddLekActivity2.class);
         intent.putExtra("medicine", medicine);
         startActivity(intent);
     }

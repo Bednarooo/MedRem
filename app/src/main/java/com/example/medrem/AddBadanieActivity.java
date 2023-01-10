@@ -28,7 +28,7 @@ public class AddBadanieActivity extends AppCompatActivity implements AdapterView
         int index = parent.getSelectedItemPosition();
         Intent intent;
         if (index == 1) {
-            intent = new Intent(this, AddLekAcivity.class);
+            intent = new Intent(this, AddLekActivity.class);
             startActivity(intent);
         }
     }

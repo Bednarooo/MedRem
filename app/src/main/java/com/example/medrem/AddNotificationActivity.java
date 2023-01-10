@@ -28,7 +28,7 @@ public class AddNotificationActivity extends AppCompatActivity implements Adapte
         int index = parent.getSelectedItemPosition();
         Intent intent;
         if (index == 1) {
-            intent = new Intent(this, AddLekAcivity.class);
+            intent = new Intent(this, AddLekActivity.class);
             startActivity(intent);
         } else if (index == 2) {
             intent = new Intent(this, AddBadanieActivity.class);
