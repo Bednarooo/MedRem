@@ -85,7 +85,7 @@ public class AddBadanieActivity3 extends AppCompatActivity {
                         measurement.setMeasurementId(UUID.randomUUID().toString());
 
                         db.collection("measurements").document(measurement.getMeasurementId())
-                                .set(measurement)
+                                .set(mapMeasurement)
                                 .addOnSuccessListener(documentReference -> Toast.makeText(this, "Pomyślnie dodano pomiar", Toast.LENGTH_SHORT).show())
                                 .addOnFailureListener(e -> Toast.makeText(this, "Błąd podczas dodawania pomiaru", Toast.LENGTH_SHORT).show());
                         Intent intent = new Intent(this, AlarmReceiver.class);
