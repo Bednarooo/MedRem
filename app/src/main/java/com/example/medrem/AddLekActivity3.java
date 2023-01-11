@@ -94,11 +94,6 @@ public class AddLekActivity3 extends AppCompatActivity {
                         intent.putExtra("name", medicine.getName());
                         intent.putExtra("dose", medicine.getDose() + " " + medicine.getDoseType().toString());
 
-                        PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0,
-                                intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-                        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-
                         Date t = null;
                         try {
                             t = new SimpleDateFormat("hh:mm").parse(medicine.getTime());
@@ -112,8 +107,13 @@ public class AddLekActivity3 extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        long alarmStartTime = combine(d, t).getTimeInMillis();
-                        alarm.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
+                        if (date == datesInRange.get(0)) {
+                            PendingIntent alarmIntent = PendingIntent.getBroadcast(this, 0,
+                                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                            long alarmStartTime = combine(d, t).getTimeInMillis();
+                            alarm.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
+                        }
                     }
                     openMainActivity();
                 }
