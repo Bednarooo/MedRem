@@ -101,7 +101,8 @@ public class ProgressFragment extends Fragment {
                             "Dawka: " + medicinesFromDb.get(i).getDose() + ", " + '\n' +
                             "Typ dawkowania: " + medicinesFromDb.get(i).getDoseType() + ", " + '\n' +
                             "Data: " + medicinesFromDb.get(i).getDate() + ", " + '\n' +
-                            "Godzina: " + medicinesFromDb.get(i).getTime());
+                            "Godzina: " + medicinesFromDb.get(i).getTime() + ", " + '\n' +
+                            "Zazyty: " + medicinesFromDb.get(i).isClicked());
                 }
                 ArrayAdapter<String> medicinesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, medicinesStringArray);
                 progressMedicinesListView.setAdapter(medicinesAdapter);
@@ -124,7 +125,8 @@ public class ProgressFragment extends Fragment {
                 for (int i = 0; i < measurementsFromDb.size(); i++) {
                     measurementsStringArray.add("Nazwa pomiaru: " +measurementsFromDb.get(i).getName() + ", " + '\n' +
                             "Data: " + measurementsFromDb.get(i).getDate() + ", " + '\n' +
-                            "Godzina: " + measurementsFromDb.get(i).getTime());
+                            "Godzina: " + measurementsFromDb.get(i).getTime() + ", " + '\n' +
+                            "Zazyty: " + measurementsFromDb.get(i).isClicked());
                 }
                 ArrayAdapter<String> measurementsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, measurementsStringArray);
                 progressMedicinesListView.setAdapter(measurementsAdapter);
